@@ -1,0 +1,49 @@
+<!-- distance_matrix.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distance Matrix API Example</title>
+</head>
+<body>
+
+    <h1>Distance Matrix API Example</h1>
+
+    <label for="origin">Origin:</label>
+    <input type="text" id="origin" placeholder="Enter origin">
+
+    <label for="destination">Destination:</label>
+    <input type="text" id="destination" placeholder="Enter destination">
+
+    <button onclick="calculateDistance()">Calculate Distance</button>
+
+    <h2>Result:</h2>
+    <div id="result"></div>
+
+    <script>
+        function calculateDistance() {
+            var origin = document.getElementById('origin').value;
+            var destination = document.getElementById('destination').value;
+
+            // Include your API key in the request URL
+            var apiKey = 'AIzaSyAyKiS-60rCCNIF4eIGhp3FSVX56ZklJUg';
+            var apiUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=${apiKey}`;
+
+            // Make a request to the Distance Matrix API
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Display the result
+                    document.getElementById('result').innerText = `Distance: ${data.rows[0].elements[0].distance.text}, Duration: ${data.rows[0].elements[0].duration.text}`;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerText = 'Error occurred while fetching data';
+                });
+        }
+    </script>
+
+</body>
+</html>

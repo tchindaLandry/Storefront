@@ -1,0 +1,4 @@
+Django~=4.2.7
+responses~=0.24.1
+googlemaps~=4.10.0
+testcase~=0.1.0
