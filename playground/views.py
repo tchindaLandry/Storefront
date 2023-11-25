@@ -1,19 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import LocationForm
 
-def collect_location(request):
-    if request.method == 'POST':
-        form = LocationForm(request.POST)
-        #if form.is_valid():
+def homepageView(request):
+    return render(request, 'button.html')
 
-    else:
-        form = LocationForm()
+def lieu1(request):
+     return render(request, 'lieu1.html')
 
-    return render(request, 'collect_location.html', {'form': form})
+def lieu2(request):
+    return render(request, 'lieu2.html')
 
-def getlocationView(request):
-    return render(request, 'getlocation.html')
-
-def say_hello(request):
-    return render(request, 'hello.html', {'name' : 'mosh'})
+# def say_hello(request):
+#     return render(request, 'hello.html', {'name' : 'mosh'})

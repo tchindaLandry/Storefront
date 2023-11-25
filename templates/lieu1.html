@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Current Location with Google Maps API</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyKiS-60rCCNIF4eIGhp3FSVX56ZklJUg&libraries=places,directions"></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #map-container {
+      height: 50vh;
+      width: 100%;
+    }
+
+    #info-container {
+      height: 50vh;
+      width: 100%;
+      overflow: auto; /* Enable scrolling */
+      background-color: lightblue;
+      position: relative;
+    }
+
+    #info-container.fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    #fullscreen-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1;
+      cursor: pointer;
+    }
+  </style>
+ <script src="{% static 'targetLocation1.js' %}"></script>{# this code will call javascript code responsible#}
+{#    for locating the address of the home destination#}
+</head>
+
+<body onload="initMap()">
+  <div id="map-container"></div>
+  <div id="info-container">
+    <i id="fullscreen-btn" class="fas fa-expand" onclick="toggleFullscreen()"></i>
+    <p>Your additional information goes here...</p>
+      <p>Gather 'round, my young ones, and let this old grandfather share a bit of wisdom garnered from the ebb and flow of time. First and foremost, cherish the moments that slip through your fingers like fine sand. Life may feel like a meandering river now, but, mark my words, it's a swift current, and the years will pass in the blink of an eye. Find joy in the simple things, laugh heartily, and hold on to those precious memories.
+
+Now, onto resilience — a trait as sturdy as the mightiest oak. Life, my dears, is bound to throw storms your way. Be resilient, stand tall in the face of adversity, and let challenges sculpt the strength and character that will carry you through.
+
+In this whirlwind of existence, never underestimate the power of genuine connections. Nurture relationships with family and friends, for these bonds are the sturdy pillars that will support you through life's unpredictable journey.
+
+On to the pursuit of knowledge — a lifelong voyage that will enrich your spirit and broaden your horizons. Read with hunger, ask questions with abandon, and embrace the boundless possibilities that come with a thirst for learning.
+
+Lastly, kindness — a beacon in a world that can sometimes be unkind. Let kindness be your guiding principle. Extend a helping hand, lend a compassionate ear, and watch as these small acts create ripples of positive change.
+
+As you embark on your unique journey, may these words serve as lanterns, lighting the path ahead with the warmth of timeless advice.</p>
+  </div>
+</body>
+
+</html>
