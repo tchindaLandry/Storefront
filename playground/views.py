@@ -16,7 +16,7 @@ def article_list(request):
             'title': 'Tantsilong',
             'description': 'Tatsilong, étoile brillante de nos vies, ton héritage rayonne toujours. Ton amour et ta sagesse illuminent nos jours, éternellement gravés dans nos souvenirs.',
             'image_url': 'https://actucameroun.com/wp-content/uploads/2020/07/olivier-bibou-nissack-e1593778917400-300x200.jpg.webp',
-            'link': 'http://127.0.0.1:8000/playground/adresse1/',
+            'link': 'https://location-du-deuil.vercel.app/playground/adresse1/',
         },
         {
             'id': 2,
