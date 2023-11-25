@@ -1,0 +1,25 @@
+<!-- article_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for article in articles %}
+    <a href="{{ article.link }}" rel="bookmark" class="post-list">
+      <div class="pl-2 post-preview post post-{{ article.id }} type-post status-publish format-standard has-post-thumbnail hentry" style="background-color: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 order-sm-0 order-md-12" style="width: 100%;">
+                 <img alt="{{ article.title }}" src="{{ article.image_url }}" class="img-fluid wp-post-image" decoding="async" style="width: 100%;">
+            </div>
+          <div class="col-lg-8 col-md-8 order-1">
+            <header class="entry-header post-preview">
+              <h3 class="entry-title">{{ article.title }}</h3>
+            </header>
+            <div class="excerpt-item" style="text-decoration: none; color: black;">
+                <p>{{ article.description }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+{% endblock %}

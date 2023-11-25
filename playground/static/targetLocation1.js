@@ -20,9 +20,6 @@ function initMap() {
         lng: position.coords.longitude
       };
 
-      // Update the map center
-      map.setCenter(pos);
-
       // Update the user's marker or create a new one
       if (userMarker) {
         userMarker.setPosition(pos);
@@ -63,7 +60,6 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
-
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
