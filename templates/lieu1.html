@@ -47,8 +47,12 @@
     }
   </style>
  <script>
-  function updateUserLocation() {
-  const currentZoom = map.getZoom();
+  let map; // Declare map variable to make it accessible globally
+let userMarker;
+let zoomHistory = []; // Array to store zoom level history
+let centerHistory = []; // Array to store center position history
+
+function updateUserLocation() {
   navigator.geolocation.getCurrentPosition(function (position) {
     const pos = {
       lat: position.coords.latitude,
@@ -66,20 +70,36 @@
     }
 
     // Request directions if necessary
-    // ...
-  });
+    const directionsService = new google.maps.DirectionsService();
+    const directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(map);
 
-  setTimeout(updateUserLocation, 5000); // Update every 5 seconds
+    const request = {
+      origin: pos,
+      destination: { lat: YOUR_DESTINATION_LATITUDE, lng: YOUR_DESTINATION_LONGITUDE },
+      travelMode: 'DRIVING'
+    };
+
+    directionsService.route(request, function (result, status) {
+      if (status == 'OK') {
+        directionsDisplay.setDirections(result);
+      } else {
+        console.error('Directions request failed due to ' + status);
+      }
+    });
+
+    setTimeout(updateUserLocation, 5000); // Update every 5 seconds
+  });
 }
-function initMap(callback) {
-  var map = new google.maps.Map(document.getElementById('map-container'), {
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map-container'), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8,
-    gestureHandling: 'greedy',  // Enable gesture handling for map rotation
+    gestureHandling: 'greedy',
   });
 
   var infoWindow = new google.maps.InfoWindow({ map: map });
-  var userMarker;
 
   // Update user location every 5 seconds
   updateUserLocation();
@@ -88,18 +108,16 @@ function initMap(callback) {
   map.addEventListener('zoom_changed', function () {
     // Store the new zoom level
     const newZoom = map.getZoom();
+    zoomHistory.push(newZoom);
   });
 
   map.addEventListener('center_changed', function () {
     // Store the new center position
     const newCenter = map.getCenter();
+    centerHistory.push(newCenter);
   });
-
-  // ...
-
 }
 
-   
  </script>
 </head>
 
